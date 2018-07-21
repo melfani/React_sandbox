@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <title>Object ES6</title>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<h1> Object ES6</h1>
+<body>
+<script type='text/babel'>
+
+class car {
+
+  constructor(brand,model){
+    this.brand=brand
+    this.model= model
+  }
+
+  print(){
+    console.log(`My car is a  ${this.brand} ${this.model}`)
+  }
+}
+
+const mycar = new car("BMW","Serie 1")
+mycar.print()
+
+
+// IN JS the different function arguement and function are stored int ou class.propototype.myfunction
+class TuningCar extends car {
+
+  constructor(brand,model,reprog){
+    super(brand,model)
+    this.reprog= reprog
+  }
+
+  print(){
+    super.print()
+    console.log(`Bring your ${this.reprog.join(" and your ")}`)
+  }
+}
+
+const mytuningcar = new TuningCar("BMW","Serie1",["220ch", "200ch"])
+mytuningcar.print()
+
+console.log(mytuningcar)
+</script>
+
+
+</body>
+</html>

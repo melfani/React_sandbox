@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <title>Spread Operator</title>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<h1> Spread Operator array</h1>
+
+<script type='text/babel'>
+ const a = ['1','2','3']
+ const b = ['4','5','6']
+
+ const c = [...a , ...b]
+
+ console.log('merge with ... operator',c.join(','))
+
+</script>
+
+<h1> Destruction Spread Operator array</h1>
+<script type="text/babel">
+const a = ['1','2','3']
+
+const [last] =a.reverse()
+
+console.log(last)
+
+</script>
+
+<h1> Destruction Spread Operator array part 2</h1>
+<script type="text/babel">
+const a = ['1','2','3','4',5]
+
+const [first, ...rest] = a
+
+console.log('first element ', first)
+console.log('the rest', rest)
+
+</script>
+
+<h1> Spread Operator for arg in function</h1>
+<script type="text/babel">
+
+const trip = ['Paris','Madrid','Roma', 'Copenhagen','Ibiza']
+
+var direction = (...args) => {
+  var [start, ...others] = args
+  var [finish, ...stops]= others.reverse()
+  console.log(others)
+  console.log(`the trip start in ${start}`)
+}
+
+// don't foget the '...' when you pass the arg to the function
+
+direction(...trip)
+
+</script>
+
+
+<h1>Spread operator with objectg</h1>
+<script type="text/babel">
+
+var car = {
+
+  brand: "BMW",
+  model: "serie 1"
+}
+
+var engine ="1.4"
+
+var MyCar = {
+  ...car,
+  engine
+}
+
+console.log(MyCar)
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>DOM manipulation</title>
+    <body>
+      <ul id="mylist">
+
+      </ul>
+
+    <script type='text/babel'>
+
+    var createNode = (type, text) => {
+      let tempnode=document.createElement(type)
+      let textnode=document.createTextNode(text)
+      tempnode.appendChild(textnode)
+      document.getElementById('mylist').appendChild(tempnode)
+    }
+
+     var node = document.createElement('LI');
+
+     var textnode=document.createTextNode('try');
+
+     node.appendChild(textnode);
+
+     document.getElementById('mylist').appendChild(node);
+     createNode('LI', 'second li')
+     createNode('LI',' third li')
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <title>Set timeout </title>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<h1> basic</h1>
+
+<script type='text/babel'>
+
+// Arrow function
+// arrow function is different from standart function by not having its own
+// this, argument super or new target.
+
+// SOlUTION 1 : Nested function, we transfet this as varibale
+//  =>in nested a nested function the second this point to 'window'
+
+var tahoe = {
+  resorts : ["a","b","c","d","e"],
+// Desgin pattern for this in nested function
+   print:  function (delay=1000) {
+    var objd=this
+    setTimeout (function(obj=objd) {
+      console.log(obj.resorts.join(","))
+    },1000)
+  }
+  }
+
+  // SOlUTION 2 : Nested function, we transfet this as varibale
+  //  =>in nested a nested function the second this point to 'window'
+
+  var tahoe = {
+    resorts : ["a","b","c","d","e"],
+  // Desgin pattern for this in nested function
+     print:  function (delay=1000) {
+      setTimeout (function() {
+        console.log(this.resorts.join(","))
+      }.bind(this),delay)
+    }
+    }
+
+tahoe.print()
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>Immutability</title>
+
+
+
+
+    <body>
+
+      <script type="text/babel">
+        // immutable mean to be unchangeable
+      // Basically JS worl always with the real data not a copy
+
+      var MyCar ={
+        brand: "BMW",
+        model : "serie 1",
+        power : 103
+      }
+
+      //old way to be immutable
+
+      var upgradePower = function(car) {
+        return  Object.assign({},car,{power: car.power*2})
+      }
+
+      console.log('Power of my car without tunning ',MyCar.power)
+      console.log('Power of my car with tuning ', upgradePower(MyCar).power)
+
+      //ES7 new way more clean with spread operation
+
+      //Notice that we wrap the returned object in parentheses.
+      //With arrow functions, this is a required step since the arrow can’t just point
+      //to an object’s curly braces.
+
+      var NewUpgradePower = (car) => ({
+        ...car,
+        power: car.power*4
+      })
+
+      console.log('Power of my car with the brand new tuning',NewUpgradePower(MyCar).power)
+
+      // Some function doesnt work well for immutability.
+      // for example the function push overwrite the object.
+      // use concate instead
+
+      var Parking = [ {brand : 'BMW'},{brand : 'Mercedes'},{brand : 'Audi'},{brand : 'Volvo'}]
+      // not push
+      var ParkCar = (Parking,car) => Parking.concat({brand : car})
+
+      var ParkingCarSpread = (Parking, car) => [...Parking, {brand : car}]
+
+      console.log('Initial Parking', Parking)
+      console.log( ' My Parking with my new Mustang (concat)', ParkCar(Parking, 'Mustang'))
+      console.log( ' My Parking with my new Spyder (spread)', ParkingCarSpread(Parking,'Spyder'))
+      console.log('Inital Parking still the same', Parking)
+
+
+
+      </script>
+
+</body>
+</html>

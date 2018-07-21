@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <title>Enhancement</title>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<h1> basic</h1>
+
+<script type='text/babel'>
+
+var name = "Tallac"
+var elevation = 9738
+var sound ="go fast"
+var funHike = { name,elevation }
+console.log(funHike)
+
+//Enhancement function
+
+var print = function() {
+      console.log(`Mt. ${this.name} is ${this.elevation} feet tall`)
+    }
+    var funHike = { name,elevation,print }
+    funHike.print()
+
+
+    const skier = {
+     name,
+     sound,
+     powderYell() {
+       let yell = this.sound.toUpperCase()
+       console.log(`${yell} ${yell} ${yell}!!!`)
+     },
+     speed(mph) {
+       this.speed = mph
+       console.log('speed:', mph)
+     }
+   }
+   skier.powderYell()
+   skier.speed(350)
+   console.log(JSON.stringify(skier))
+
+</script>
+
+</body>
+</html>

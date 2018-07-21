@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <title> Declarring variable</title>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <h1> NOT Const</h1>
+    <p>can modify the variable </p>
+    <script type="text/babel">
+        // The value of a variable can change
+        var notconstant = true
+        notconstant = false
+        console.log('notconstant',notconstant)
+    </script>
+
+    <!-- ################################################# -->
+    <h1>Const</h1>
+    <p> cannot modufy the variable </p>
+    <script type="text/babel">
+        // The value of a variable can change
+        const constant = true
+        //constant = false
+        console.log('constant',constant)
+    </script>
+
+    <!-- ################################################# -->
+    <h1>Not Let</h1>
+<p>without let the modification in the function  is global </p>
+<script type="text/babel">
+    // Variables cannot be scoped to code blocks
+    var topic = "JavaScript"
+    if (topic) {
+      var topic = "React"
+      console.log('block', topic)
+    }
+    console.log('global', topic)
+</script>
+
+<!-- ################################################# -->
+<h1>Let</h1>
+<p>without let the modification in the function  is local </p>
+<script type="text/babel">
+// Variables cannot be scoped to code blocks
+var topic = "JavaScript"
+if (topic) {
+  let topic = "React"
+  console.log('block', topic)
+}
+console.log('global', topic)
+</script>
+
+
+
+<style media="screen">
+      #container {
+          display: flex;
+          justify-content: space-around;
+      }
+      #container>div {
+          height: 5em;
+          width: 5em;
+          background-color: purple;
+      }
+    </style>
+
+
+<h1> Click on a Box : loop without Let</h1>
+<div id="container"></div>
+<script type="text/babel">
+  // Problem, counters are not scoped to for loop blocks
+  var div,
+      container = document.getElementById('container')
+  for (var i=0; i<5; i++) {
+    div = document.createElement('div')
+    div.onclick = function() {
+      alert('This is box #' + i)
+    }
+    container.appendChild(div)
+  }
+</script>
+
+<style media="screen">
+      #containerlet {
+          display: flex;
+          justify-content: space-around;
+      }
+      #containerlet>div {
+          height: 5em;
+          width: 5em;
+          background-color: blue;
+      }
+    </style>
+<h1> Click on a Box : loop with Let</h1>
+<div id="containerlet"></div>
+<script type="text/babel">
+  // Problem, counters are not scoped to for loop blocks
+  var div,
+      containerlet = document.getElementById('containerlet')
+  for (let i=0; i<5; i++) {
+    div = document.createElement('div')
+    div.onclick = function() {
+      alert('This is box #' + i)
+    }
+    containerlet.appendChild(div)
+  }
+</script>
+
+<h1> String concatenation </h1>
+<script = type="text/babel">
+
+var str1="Hello "
+var str2="world "
+var str3="!"
+
+console.log( str1+str2+str3)
+
+// concatenation ES6
+
+console.log( {str1}, {str2} , {str2})
+
+</script>
+
+<h1> Test </h1>
+
+<h1>Default Parameters</h1>
+<p>set default parameter</p>
+<script type="text/babel">
+
+    function logActivity(name="Shane McConkey", activity="skiing") {
+    console.log( String(name) +  ' loves ' + String(activity) )
+    }
+    logActivity()
+</script>
+
+
+<h1>Default Parameters Object</h1>
+<p>Open the console</p>
+<script type="text/babel">
+    var defaultPerson = {
+      name: {
+        first: "Shane",
+        last: "McConkey"
+      },
+      favActivity: "skiing"
+    }
+
+    function logActivity(p=defaultPerson) {
+      console.log( `${p.name.first} loves ${p.favActivity}` )
+
+    }
+
+    logActivity()
+
+</script>
+
+<h1>Function</h1>
+
+    <script language="JavaScript" type="text/javascript">
+    // Regular Function
+    var lordify = function(firstname) {
+      return  ` ${firstname} of Canterbury`
+    }
+    console.log( lordify("Dale") )
+    console.log( lordify("Daryle") )
+</script>
+</body>
+</html>
