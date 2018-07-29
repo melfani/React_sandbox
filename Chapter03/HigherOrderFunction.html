@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>Higher Order Function</title>
+
+    <body>
+
+      <script type="text/babel">
+    // Higher Order function is function in function (functionception) like array.filter, map or reduceRight
+
+      const invokeIf = (condition, fnTrue, fnFalse) => (condition) ? fnTrue() : fnFalse()
+
+      const showWelcome = () => console.log("Welcome!!!")
+
+      const showUnauthorized = () => console.log("Unauthorized!!!")
+
+      invokeIf(true, showWelcome, showUnauthorized) // "Welcome"
+      invokeIf(false, showWelcome, showUnauthorized)// "Unauthorized"
+
+
+
+      </script>
+
+</body>
+</html>

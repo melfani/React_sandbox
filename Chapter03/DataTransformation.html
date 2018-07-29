@@ -102,17 +102,17 @@
         return colors}, {}) // initial value {}
 
 
-      console.log(ArrayToObjectColor)
+      console.log('Transfor an arry of object into a big object ',ArrayToObjectColor)
 
-      // Distinct vlue in an array :
+      // Distinct value in an array :
 
-      const colors = ["red", "red", "green", "blue", "green"];
-      const distinctColors = colors.reduce( (distinct, color) =>
+      const colors2 = ["red", "red", "green", "blue", "green"];
+      const distinctColors = colors2.reduce( (distinct, color) =>
             (distinct.indexOf(color) !== -1) ?
                 distinct :
                 [...distinct, color],
                   [] )
-                  console.log(distinctColors)
+                  console.log('Distinct Value :',distinctColors)
 
 
 
