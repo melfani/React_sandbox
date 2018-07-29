@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>Data Transformation</title>
+
+    <body>
+
+      <script type="text/babel">
+      // How handle the work if fata have to be immutable  ? => work with pure function.
+      // 2 big library : array.map et array.reduce
+      // + use of immutable function  concat instead of push
+      // + use of immutable function filter (python-like list [bool vector to filter]) instead of pop and slice
+      // .join(",") work on copy
+
+
+
+      const classmates = [ 'Harry','Ron','Hermion','Malfoy']
+      console.log(classmates.join('\n'))
+
+
+      //filter array where element begin with H
+      const beginH = (group) => group.filter((group)=> group[0]==='H')
+
+      console.log('Keep the H student', beginH(classmates).join(','))
+
+      // remove student
+
+      const FireStudent = (group, student) => group.filter(group => group !== student)
+
+      console.log( 'Malfoy out !', FireStudent(classmates, 'Malfoy'))
+
+      // map use like python-like
+
+      var classmatesObject = classmates.map(names => ({name : names}))
+      console.log('Vector of object',classmatesObject)
+
+      // change Malfoy to Trevor in the object vector :
+
+      const SwapStudent = (group, student1, student2) =>
+        group.map(student => {
+          if (student.name === student1){
+            return { ...student,
+                      name : student2}
+           }
+          else {
+            return student
+          }
+        })
+
+      console.log( 'Swap Malfoy by Trevor', SwapStudent(classmatesObject, 'Malfoy','Trevor'))
+
+      // you can write it in one line :
+
+      const SwapStudentOneLine = (group, student1, student2) => group.map(student =>
+        (student.name === student1) ? {...student, name :student2} : student)
+
+      console.log('Swap Malfoy by Trevor in one line ',SwapStudentOneLine(classmatesObject,'Malfoy', 'Trevor'))
+
+      // Object to Array
+      const Result = { "Harry": 12, "Hermion": 18, "Ron": 9}
+      console.log('Display value of a dictionnary Harry s result', Result["Harry"])
+      const ResultArray = Object.keys(Result).map(key => ({
+                  name: key,
+                  grade: Result[key]
+                })
+              )
+      console.log('Array of result ', ResultArray)
+
+
+      // Array. reduce work the same way : reduce vector in single value
+
+      const HermioneGrade = [15,17,18,19,20]
+      const Maxgrade = HermioneGrade.reduce((max, grade) =>(grade>max) ? grade : max, 0) // initial value 0
+      console.log(Maxgrade)
+
+      // Array.reduceRight  IS the same but begin at the end of the vector
+
+      //We want to reduce an array of object into one big Object
+
+      const colors = [ {
+              id: '-xekare',
+              title: "rad red",
+              rating: 3
+            },
+            {
+              id: '-lolilol',
+              title: "blue red",
+              rating: 4
+                },
+            {
+              id: '-trololo',
+              title: "purple red",
+              rating: 6
+            }]
+
+      const ArrayToObjectColor = colors.reduce((colors, { id, title, rating}) => {
+        colors[id] ={ title , rating}
+        return colors}, {}) // initial value {}
+
+
+      console.log(ArrayToObjectColor)
+
+      // Distinct vlue in an array :
+
+      const colors = ["red", "red", "green", "blue", "green"];
+      const distinctColors = colors.reduce( (distinct, color) =>
+            (distinct.indexOf(color) !== -1) ?
+                distinct :
+                [...distinct, color],
+                  [] )
+                  console.log(distinctColors)
+
+
+
+
+
+
+
+
+
+
+
+      </script>
+
+</body>
+</html>

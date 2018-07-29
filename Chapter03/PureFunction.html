@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>Pure function</title>
+
+    <body>
+
+      <script type="text/babel">
+      //A pure function is a function that returns a value that is computed based on its arguents.
+      // Pure functions take at least one argument and always return a value or another function.
+      // + has to be immutable
+
+      const person = {
+        name : 'Harry Potter',
+        canSpell : false,
+        canFly : false,
+      }
+      // Pure function = argument + modification + immutability
+
+      var LearnATHogwart = (person) =>({
+        ...person,
+        canSpell : true,
+        canFly : true
+      })
+      console.log('can Spell', person.canSpell)
+      console.log('can Fly', person.canFly)
+      console.log('After a year at Hogwart')
+      console.log('can Spell', LearnATHogwart(person).canSpell)
+      console.log('can Fly', LearnATHogwart(person).canFly)
+
+      //with the DOM don't creat function wich modify actually the DOM
+      //Create Pure Function that manipulate the DOM but not render :
+      // Pure function not modify the global
+
+      // NOT PURE FUNCTION
+
+      function Header(text) {
+        let h1 = document.createElement('h1'); h1.innerText = text; document.body.appendChild(h1);
+    }
+      Header("Header() caused side effects");
+
+      // Pure FUNCTION
+
+      const HeaderPure = (props) => <h1>{props.title}</h1>
+
+
+
+      </script>
+
+</body>
+</html>
