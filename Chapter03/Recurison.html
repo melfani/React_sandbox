@@ -20,7 +20,28 @@
 
     countdown(10, value =>console.log(value))
 
+    // Recursion is useful to go trhough a tree like a data structure (like DOM element )
 
+    var dan={
+      type: "person",
+      data: {
+        gender: "male",
+        info: {
+          id: 22,
+          fullname: {
+            first: "Dan",
+            last: "Deacon"
+    }
+} }
+  }
+
+  const deepPick = (fields, object={}) => {
+const [first, ...remaining] = fields.split(".")
+return (remaining.length) ?
+deepPick(remaining.join("."), object[first]) : object[first]
+}
+
+console.log('Navigate trhough object structure', deepPick("data.info.fullname.first", dan))
 
 
 
