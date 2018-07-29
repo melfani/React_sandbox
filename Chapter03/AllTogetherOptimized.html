@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>Puting All together  " code  applying the 4 principles"</title>
+
+    <body>
+      <ul>
+        <li>Data Immutable</li>
+        <li>Transform data </li>
+        <li>Pure Function ( at leat one argument + a return)</li>
+        <li>Recursion Over loop</li>
+      </ul>
+
+      <script type="text/babel">
+
+      //1° Create somme small function
+      const oneSecond = () => 1000
+      const getCurrentTime = () => new Date()
+      const clear = () => console.clear()
+      const log = message => console.log(message)
+
+      //2° Data Transformation IMMUTABLE
+
+      //serializeClockTime
+      //Takes a date object and returns a object for clock time that contains hours minutes and seconds.
+
+      // civilianHours
+      //Takes the clock time object and returns an object where hours are converted to civilian time. For example: 1300 becomes 1 o’clock
+
+      //appendAMPM
+      //Takes the clock time object and appends time of day, AM or PM, to that object.
+
+      const serializeClockTime = date => ({
+            hours: date.getHours(),
+            minutes: date.getMinutes(),
+            seconds: date.getSeconds()
+          })
+
+      const civilianHours = clockTime => ({
+            ...clockTime,
+            hours: (clockTime.hours > 12) ?
+                clockTime.hours - 12 :
+                clockTime.hours
+          })
+
+      const appendAMPM = clockTime => ({
+            ...clockTime,
+            ampm: (clockTime.hours >= 12) ? "PM" : "AM"
+        })
+
+
+      // Higher Oder Function
+
+
+    //display
+    //Takes a target function and returns a function that will send a time to the target. In this example the target will be console.log.
+
+    //formatClock
+    //Takes a template string and uses it to return clock time formatted based upon the criteria from the string.
+    //In this example, the template is “hh:mm:ss tt”. From ther, formatClock will replaces the placeholders with hours, minutes, seconds, and time of day.
+
+    //prependZero
+    //Takes an object’s key as an argument and prepends a zero to the value stored under that objects key.
+    //It takes in a key to a specific field and prepends values with a zero if the value is less than 10.
+    const display = target => time => target(time)
+
+    const formatClock = format => time =>
+                format.replace("hh", time.hours)
+                      .replace("mm", time.minutes)
+                      .replace("ss", time.seconds)
+                      .replace("tt", time.ampm)
+
+    const prependZero = key => clockTime => ({
+                ...clockTime,
+                [key]: (clockTime[key] < 10) ?
+                    "0" + clockTime[key] :
+                    clockTime[key]
+    })
+
+    // 4° Composition of the different function
+
+    //convertToCivilianTime
+    //A single function that will take clock time as an argument and transforms it into civilian time by using both civilian hours.
+
+    //doubleDigits
+    //A single function that will take civilian clock time and make sure the hours, minutes,
+    //and seconds display double digits by prepending zeros where needed.
+
+    //startTicking
+    //Starts the clock by setting an interval that will invoke a callback every second.
+    //The callback is composed using all of our functions.
+    //Every second the console is cleared, currentTime obtained, converted, civilianized, formatted, and displayed.
+
+    const compose = (...fns) => (arg) =>
+        fns.reduce(
+          (composed, f) => f(composed),
+          arg
+)
+
+    const convertToCivilianTime = clockTime => compose(
+    appendAMPM,
+    civilianHours
+          )(clockTime)
+
+          const doubleDigits = civilianTime => compose(
+            prependZero("hours"),
+            prependZero("minutes"),
+            prependZero("seconds")
+        )(civilianTime)
+        const startTicking = () => setInterval(
+            compose(
+                clear,
+                getCurrentTime,
+                serializeClockTime,
+                convertToCivilianTime,
+                doubleDigits,
+                formatClock("hh:mm:ss tt"),
+                display(log)
+),
+            oneSecond()
+        )
+    startTicking()
+
+
+
+
+
+      </script>
+
+</body>
+</html>
