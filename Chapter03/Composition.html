@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>Composition</title>
+
+    <body>
+
+      <script type="text/babel">
+      // use of chained fonction est .ToupperCase.replace('A','a') etc...
+      //= higher Oder function by combining simple function
+      const template = "hh:mm:ss tt"
+      const clockTime = template.replace("hh", "03")
+          .replace("mm", "33")
+          .replace("ss", "33")
+          .replace("tt", "PM")
+
+          console.log(clockTime)
+
+      // example :
+      const both = date => appendAMPM(civilianHours(date))
+
+      // ou avec compose = more elegant
+
+      const compose = (...fns) => (arg) =>
+        fns.reduce(
+          (composed, f) => f(composed),
+          arg
+)
+
+      const both2 = compose( civilianHours,
+appendAMPM
+)
+both2(new Date())
+
+
+
+      </script>
+
+</body>
+</html>
