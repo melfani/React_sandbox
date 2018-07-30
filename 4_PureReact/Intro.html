@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> <title>Pure React Samples</title> </head>
+<body>
+  <!-- Target container -->
+<div class="react-container"></div>
+  <!-- React library & ReactDOM IMPOSSIBLE WITHOUT THIS -->
+<script src="https://unpkg.com/react@15.4.2/dist/react.js"></script>
+ <script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.js"></script>
+
+ <div id="react-container"> </div>
+
+<script>
+    var h1 =React.createElement("h1", null, "Baked Salmon")
+      // second variable = compennent proprieties
+      //will create <h1>Baked Salmon</h1>
+
+      //for propertie replace Class by ClassName because it is already use in JS
+    var ul =React.createElement("ul",{"className" :"myUls"},
+    React.createElement("li", null, "1 lb Salmon"),
+    React.createElement("li", null, "1 cup Pine Nuts"),
+    React.createElement("li", null, "2 cups Butter Lettuce"),
+    React.createElement("li", null, "1 Yellow Squash"),
+    React.createElement("li", null, "1/2 cup Olive Oil"),
+    React.createElement("li", null, "3 cloves of Garlic")
+    )
+
+    var div =React.createElement('Section', null, h1, ul)
+
+     var h2 =React.createElement("h1",
+    {id: "recipe-0", 'data-type': "title"}, "Baked Salmon")
+    //<h1 data-reactroot id="recipe-0" data-type="title">Baked Salmon</h1>
+    //type = what kind of type
+    // prop = data and children
+
+    ReactDOM.render(div,document.getElementById('react-container'))
+    // h1 l'Element
+    // document.get ... la cible
+
+</script>
+</body>
+</html>
