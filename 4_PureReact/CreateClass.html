@@ -26,6 +26,14 @@ const items = [    "1 lb Salmon",
                "1/2 cup Olive Oil",
                "3 cloves of Garlic" ]
 
+// IT is preferable to use the following function so we replace props by ({items})
+// it is a stateless functionnal function to create a componenent . (we have to use const)
+// it is common to use the functinal component like this :
+//const IngredientsList = ({items}) =>    React.createElement("ul", {className: "ingredients"},
+  //                                        items.map((ingredient, i) => React.createElement("li", { key: i }, ingredient)      
+    //                                               )    )
+
+
 ReactDOM.render(  React.createElement(IngredientsList, {items}, null),   document.getElementById('react-container') ) 
 
 </script>
