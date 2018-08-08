@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,9 +5,8 @@
 <body>
   <!-- Target container -->
 <div class="react-container"></div>
-  <!-- DO NOT FORGET THE PROP LIBRARY -->
+  <!-- React library & ReactDOM IMPOSSIBLE WITHOUT THIS -->
 <script src="https://unpkg.com/prop-types/prop-types.js"></script>
-     <!-- React library & ReactDOM IMPOSSIBLE WITHOUT THIS -->
 <script src="https://unpkg.com/react@15.4.2/dist/react.js"></script>
  <script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.js"></script>
  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
@@ -30,7 +28,12 @@
     displayName: "Summary",
     propTypes: {   ingredients: PropTypes.string,        
                    steps: PropTypes.string,        
-                   title: PropTypes.string    
+                   title:  (props, propName) =>
+                   (typeof props[propName] !== 'string') ?
+                   new Error("A title must be a string") :
+                   (props[propName].length > 20) ? 
+                   new Error(`title is over 20 characters`) :
+                   null    
      },
                 
   getDefaultProps() {
