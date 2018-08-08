@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> <title>Create REact Class MVC</title> </head>
+<body>
+  <!-- Target container -->
+<div class="react-container"></div>
+  <!-- React library & ReactDOM IMPOSSIBLE WITHOUT THIS -->
+<script src="https://unpkg.com/prop-types/prop-types.js"></script>
+<script src="https://unpkg.com/react@15.4.2/dist/react.js"></script>
+ <script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.js"></script>
+ <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  
+
+ <div id="react-container"> </div>
+
+<script  type="text/babel">
+
+//Arrays React.PropTypes.array 
+//Boolean React.PropTypes.bool 
+//Functions React.PropTypes.func 
+//Numbers React.PropTypes.number 
+//Objects React.PropTypes.object 
+//Strings React.PropTypes.string
+
+
+class Summary extends React.Component {    
+    static propTypes = {    
+                      ingredients: PropTypes.number,    
+                      steps: PropTypes.number,    
+                      title: (props, propName) =>       
+                                    (typeof props[propName] !== 'string') ?         
+                                    new Error("A title must be a string") :           
+                                    (props[propName].length > 20) ?              
+                                    new Error(`title is over 20 characters`) :              
+                                    null  
+                  }   
+     static defaultProps = {    ingredients: 0,    
+                                steps: 0,    
+                                title: "[recipe]" 
+                           }    
+    render() {   
+                const {ingredients, steps, title} = this.props      
+                return (  <div className="summary">              
+                            <h1>{title}</h1>              
+                            <p>                  
+                            <span>{ingredients} Ingredients | </span>
+                            <span>{steps} Steps</span>              
+                            </p>          
+                          </div>      )  
+              } 
+              }
+          
+// create element by JSx in ReactDOM or use create element
+ReactDOM.render(  <Summary title="Peanut Butter and Jelly"  
+                  ingredients="peanut butter, jelly, bread"            
+                  steps="spread peanut butter and jelly between bread"/>
+                  , document.getElementById('react-container') ) 
+</script>
+</body>
+</html>
