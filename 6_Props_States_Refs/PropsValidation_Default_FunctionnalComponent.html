@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> <title>Create REact Class MVC</title> </head>
+<body>
+  <!-- Target container -->
+<div class="react-container"></div>
+  <!-- React library & ReactDOM IMPOSSIBLE WITHOUT THIS -->
+<script src="https://unpkg.com/prop-types/prop-types.js"></script>
+<script src="https://unpkg.com/react@15.4.2/dist/react.js"></script>
+ <script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.js"></script>
+ <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  
+
+ <div id="react-container"> </div>
+
+<script  type="text/babel">
+
+//Arrays React.PropTypes.array 
+//Boolean React.PropTypes.bool 
+//Functions React.PropTypes.func 
+//Numbers React.PropTypes.number 
+//Objects React.PropTypes.object 
+//Strings React.PropTypes.string
+
+
+// with Stateless component, we can add the default value in the definition or outsite the function
+const Summary = ({ 
+                    ingredients=0, 
+                      steps=0, 
+                      title='[recipe]' 
+                 }) => {  return <div>
+                   <h1>{title}</h1>
+                   <p>{ingredients} Ingredients | {steps} Steps</p>  
+                  </div> 
+                   }
+                   
+Summary.propTypes = {  ingredients: React.PropTypes.number.isRequired,  
+                       steps: React.PropTypes.number.isRequired }
+// the default value can be defined like this                       
+Summary.defaultProps = {  ingredients: 1,  
+                          steps: 1 } 
+                   
+
+          
+// create element by JSx in ReactDOM or use create element
+ReactDOM.render(  <Summary title="Peanut Butter and Jelly"  
+                  ingredients="peanut butter, jelly, bread"            
+                  steps="spread peanut butter and jelly between bread"/>
+                  , document.getElementById('react-container') ) 
+</script>
+</body>
+</html>
