@@ -6,8 +6,9 @@
 <body>
   <!-- Target container -->
 <div class="react-container"></div>
-  <!-- React library & ReactDOM IMPOSSIBLE WITHOUT THIS -->
+  <!-- DO NOT FORGET THE PROP LIBRARY -->
 <script src="https://unpkg.com/prop-types/prop-types.js"></script>
+     <!-- React library & ReactDOM IMPOSSIBLE WITHOUT THIS -->
 <script src="https://unpkg.com/react@15.4.2/dist/react.js"></script>
  <script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.js"></script>
  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
@@ -30,7 +31,15 @@
     propTypes: {   ingredients: PropTypes.string,        
                    steps: PropTypes.string,        
                    title: PropTypes.string    
-                },
+     },
+                
+  getDefaultProps() {
+              return {            
+                      ingredients: 0,            
+                      steps: 0,            
+                      title: "[recipe]"        
+                     }   
+   },
   render() {
      const {ingredients, steps, title}= this.props
     return (<div className="summary">
