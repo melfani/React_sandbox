@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> <title>Create REact Class MVC</title> </head>
+<body>
+  <!-- Target container -->
+<div class="react-container"></div>
+  <!-- React library & ReactDOM IMPOSSIBLE WITHOUT THIS -->
+  <script src="https://unpkg.com/prop-types/prop-types.js"></script>
+<script src="https://unpkg.com/react@15.4.2/dist/react.js"></script>
+ <script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.js"></script>
+ <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  
+
+ <div id="react-container"> </div>
+
+<script  type="text/babel">
+
+
+ 
+ //WE WANR TO USE THE DATA HERE
+ 
+ const logColor = (title, color) =>
+             console.log(`New Color: ${title} | ${value}`)
+
+ class AddColorForm extends React.Component {
+    constructor(props) {    
+                          super(props)  
+                          // withES6 we must bind the method to use in the component
+                          this.submit = this.submit.bind(this)  
+                         } 
+                         
+   //you can add the onNewColor Props but it is not clean
+   //if (this.props.onNewColor) {    this.props.onNewColor(_title.value, _color.value) } 
+   
+   //Best Ways :
+    static propTypes = {    
+                          onNewColor: PropTypes.func 
+                          }
+    
+    static defaultProps = {
+                                        onNewColor: f=>f 
+                                        }
+   
+   submit(e) {    
+                 const { _title, _color } = this.refs    
+                 e.preventDefault();
+// Inverse DATAFLOW : SEND BACK THE DATA
+                 this.props.onNewColor(_title.value, _color.value)
+                 _title.value = '';
+                 _color.value = '#000000';    
+                 _title.focus(); 
+              }
+   render(){
+   return ( <form onSubmit={this.submit} onNewColor={logColor} >
+   
+                 <input  ref="_title" type="text" placeholder="color title..." required/>
+                 <input  ref="_color" type="color" required/>
+                 <button>ADD</button>
+            </form>)
+         }
+       }
+       
+         // the best way to add the OnNewColor props is by protype :
+        // AddColorForm.propTypes = {    onNewColor: PropTypes.func }
+          //AddColorForm.defaultProps = {    onNewColor: f=>f } 
+          // preferable to add it in the component whit Static
+         
+         
+       
+  ReactDOM.render(<AddColorForm/>, document.getElementById('react-container'))
+
+</script>
+</body>
+</html>
